@@ -7,7 +7,7 @@
 package es.uam.eps.multij;
 
 /**
- * Un evento usado para notificar a los suscriptores a una partida de todo
+ * Un evento usado para notificar a los suscriptores a una partida de
  * lo que sucede en la misma.
  *
  * @author mfreire

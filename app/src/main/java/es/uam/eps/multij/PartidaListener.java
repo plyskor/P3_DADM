@@ -7,7 +7,7 @@
 package es.uam.eps.multij;
 
 /**
- * Interfaz que debe implementar todo suscriptor a los eventos que genera una
+ * Interfaz que debe implementar  suscriptor a los eventos que genera una
  * Partida.
  *
  * @author mfreire

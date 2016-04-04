@@ -10,4 +10,8 @@
     <string name="O">O</string>
     <string name="button_newgameString">New Game</string>
     <string name="nul"></string>
+
+    <string name="title_activity_welcome_animation_activity">Connect3</string>
+    <string name="menu_access">Ir al menú</string>
+    <string name="initial_anim">WELCOME\n\n\nTIC\nTAC\nTOE</string>
 </resources>
