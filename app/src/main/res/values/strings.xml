@@ -10,8 +10,37 @@
     <string name="O">O</string>
     <string name="button_newgameString">New Game</string>
     <string name="nul"></string>
+    <!-- Strings related to menu -->
+    <string name="MainMenu">Menú Principal</string>
+    <string name="menuItem1">Jugar</string>
+    <string name="menuItem2">Ayuda</string>
+    <string name="menuItem3">Login</string>
+    <string name="menuItem4">Puntuaciones</string>
+    <string name="menuItem5">Top 10</string>
+
 
     <string name="title_activity_welcome_animation_activity">Connect3</string>
-    <string name="menu_access">Ir al menú</string>
     <string name="initial_anim">WELCOME\n\n\nTIC\nTAC\nTOE</string>
+
+
+    <!-- Strings related to login -->
+    <string name="title_activity_login">Iniciar Sesión</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <!-- Strings related to ratings -->
+    <string name="ratings_title">Puntuaciones</string>
+    <string name="action_settings">
+        "Settings"
+    </string>
+
+
 </resources>

@@ -97,10 +97,11 @@ public class welcome_animation_activity extends AppCompatActivity {
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toggle();
+                Intent intent= new Intent("android.intent.action.MENU");
+                startActivity(intent);
             }
         });
-        findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
 
     }
 
@@ -109,10 +110,7 @@ public class welcome_animation_activity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         delayedHide(0);
     }
-    public void sendMessage(View view){
-        Intent intent= new Intent("android.intent.action.MAINACTIVITY");
-        startActivity(intent);
-    }
+
     private void toggle() {
         if (mVisible) {
             hide();
