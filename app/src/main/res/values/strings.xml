@@ -41,6 +41,20 @@
     <string name="action_settings">
         "Settings"
     </string>
-
-
+    <!-- Strings related to top10 -->
+    <string name="top10_title">Top 10</string>
+    <!-- Strings related to about -->
+    <string name="about_title">Acerca de</string>
+    <!-- Strings related to pref.menu -->
+    <string name="prefmenu1">Acerca de</string>
+    <string name="prefmenu2">Preferencias</string>
+    <string name="boardPrefText">Tablero</string>
+    <string name="boardPrefText1">Tablero 1</string>
+    <string name="boardPrefText2">Tablero 2</string>
+    <string name="boardPrefText3">Tablero 3</string>
+    <string name="colorPrefText1">Color 1</string>
+    <string name="colorPrefText2">Color 2</string>
+    <string name="colorPrefText3">Color 3</string>
+    <string name="colorPrefText">Color</string>
+    <string name="musicPrefs">Sonido</string>
 </resources>

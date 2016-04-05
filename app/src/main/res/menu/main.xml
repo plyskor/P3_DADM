@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
+    <item
+        android:title="@string/prefmenu1" android:id="@+id/menuAbout" android:icon="@android:drawable/ic_menu_info_details" />
+    <item
+        android:title="@string/prefmenu2" android:id="@+id/menuPreferences" android:icon="@android:drawable/ic_dialog_email" >
+    <menu>
+        <item android:id="@+id/BoardPreferences" android:title="@string/boardPrefText">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item android:id="@+id/BoardPreferences1" android:title="@string/boardPrefText1" />
+                <item android:id="@+id/BoardPreferences2" android:title="@string/boardPrefText2"/>
+                <item android:id="@+id/BoardPreferences3" android:title="@string/boardPrefText3"/>
+                </group>
+            </menu>
+        </item>
+        <item android:id="@+id/ColorPreferences" android:title="@string/colorPrefText">
+            <menu>
+                <group android:checkableBehavior="single">
+                    <item android:id="@+id/ColorPreferences1" android:title="@string/colorPrefText1" />
+                    <item android:id="@+id/ColorPreferences2" android:title="@string/colorPrefText2"/>
+                    <item android:id="@+id/ColorPreferences3" android:title="@string/colorPrefText3"/>
+                </group>
+            </menu>
+        </item>
+        <item android:id="@+id/soundPreferences" android:title="@string/musicPrefs"/>
+    </menu>
+    </item>
 </menu>

@@ -97,7 +97,7 @@ public class welcome_animation_activity extends AppCompatActivity {
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent("android.intent.action.MENU");
+                Intent intent= new Intent("android.intent.action.C3.MENU");
                 startActivity(intent);
             }
         });

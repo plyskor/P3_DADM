@@ -35,7 +35,7 @@
             android:name="res.layout.MainMenu"
             android:label="@string/MainMenu">
             <intent-filter>
-                <action android:name="android.intent.action.MENU" />
+                <action android:name="android.intent.action.C3.MENU" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
@@ -44,19 +44,37 @@
             android:name="res.layout.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
-                <action android:name="android.intent.action.LOGIN" />
+                <action android:name="android.intent.action.C3.LOGIN" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name="res.layout.rating"
+        <activity
+            android:name="res.layout.rating"
             android:label="@string/ratings_title">
             <intent-filter>
-            <action android:name="android.intent.action.RATINGS" />
+                <action android:name="android.intent.action.C3.RATINGS" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter></activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="res.layout.top10"
+            android:label="@string/top10_title">
+            <intent-filter>
+                <action android:name="android.intent.action.C3.TOPTEN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name="res.layout.about"
+            android:label="@string/about_title">
+            <intent-filter>
+                <action android:name="android.intent.action.C3.ABOUT" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
