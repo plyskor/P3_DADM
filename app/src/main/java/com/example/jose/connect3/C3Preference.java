@@ -1,6 +1,7 @@
 package com.example.jose.connect3;
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.app.FragmentTransaction;
@@ -23,6 +24,7 @@ public class C3Preference extends Activity {
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
         C3PreferenceFragment fragment = new C3PreferenceFragment(); fragmentTransaction.replace(android.R.id.content, fragment); fragmentTransaction.commit();
+
 
     }
     public static String getFigureName(Context context){

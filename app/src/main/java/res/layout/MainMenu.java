@@ -9,6 +9,8 @@ import android.content.SharedPreferences;
 import android.content.ComponentName;
 import android.os.IBinder;
 import android.content.Context;
+import android.preference.Preference;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.preference.PreferenceManager;
 import com.example.jose.connect3.C3Preference;
 import com.example.jose.connect3.R;
@@ -18,20 +20,25 @@ import android.media.MediaPlayer;
 import java.io.IOException;
 
 public class MainMenu extends AppCompatActivity {
-    private static boolean mIsBound = false;
+    public static boolean mIsBound = false;
     private MusicService mServ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main_menu);
         if (!MainMenu.mIsBound) {
             doBindService();
             Intent music = new Intent();
             music.setClass(this, MusicService.class);
             startService(music);
+
         }
+        SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
+                
+            }
+        };
 
     }
 
@@ -62,11 +69,9 @@ public class MainMenu extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        Boolean play = false;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.contains(C3Preference.PLAY_MUSIC_KEY))
-            play = sharedPreferences.getBoolean(C3Preference.PLAY_MUSIC_KEY,
-                    C3Preference.PLAY_MUSIC_DEFAULT);
+
+
+
 
 
     }
@@ -126,14 +131,9 @@ public class MainMenu extends AppCompatActivity {
         super.onDestroy();
         doUnbindService();
         if (isFinishing()) {
-
-
-
                 Intent music = new Intent();
                 music.setClass(this, MusicService.class);
                 mServ.stopService(music);
-
-
         }
     }
 }
