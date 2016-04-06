@@ -36,7 +36,7 @@ public class MainMenu extends AppCompatActivity {
         }
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-                
+
             }
         };
 
