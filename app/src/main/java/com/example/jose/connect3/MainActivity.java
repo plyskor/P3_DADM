@@ -1,5 +1,6 @@
 package com.example.jose.connect3;
-
+import android.view.MenuItem;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -12,7 +13,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import res.layout.About;
 import java.util.ArrayList;
 
 import es.uam.eps.multij.*;
@@ -224,6 +225,17 @@ public class MainActivity extends AppCompatActivity {
     }
     public int[] getIds() {
         return ids;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menuAbout:
+            startActivity(new Intent(this, About.class));
+            return true;
+
+            case R.id.menuPreferences:
+                startActivity(new Intent(this, C3Preference.class));
+                return true; }
+        return super.onOptionsItemSelected(item);
     }
 }
 

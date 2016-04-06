@@ -3,7 +3,7 @@ package res.layout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.example.jose.connect3.R;
-public class about extends AppCompatActivity {
+public class About extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
