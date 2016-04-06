@@ -34,8 +34,10 @@ public class MainMenu extends AppCompatActivity {
             startService(music);
 
         }
+
         SharedPreferences prefs =
                 PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
                 if(key.equals(C3Preference.PLAY_MUSIC_KEY)){
@@ -45,7 +47,11 @@ public class MainMenu extends AppCompatActivity {
                         play = sharedPreferences.getBoolean(C3Preference.PLAY_MUSIC_KEY,
                                 C3Preference.PLAY_MUSIC_DEFAULT);
                     if (play == true)
-                    {mServ.resumeMusic();}else{
+                    {if (!mIsBound){
+                        doBindService();
+                    }
+                        mServ.resumeMusic();
+                    }else{
                         mServ.pauseMusic();
                     }
                 }
@@ -110,8 +116,23 @@ public class MainMenu extends AppCompatActivity {
         inflater.inflate(R.menu.main, menu);
         return true;
     }
+    public void onWindowFocusChanged(boolean winFocus) {
+        super.onWindowFocusChanged(winFocus);
+        if (winFocus) {
+            if (!mIsBound) {
+                doBindService();
 
-    public boolean onOptionsItemSelected(MenuItem item) {
+        }}else{
+                doUnbindService();
+            }
+    }
+    public void onRestart(){
+        super.onRestart();
+        if(!mIsBound){
+            doBindService();
+        }
+    }
+        public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menuAbout:
                 startActivity(new Intent(this, About.class));
@@ -126,17 +147,8 @@ public class MainMenu extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        Boolean play = false;
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        if (sharedPreferences.contains(C3Preference.PLAY_MUSIC_KEY))
-            play = sharedPreferences.getBoolean(C3Preference.PLAY_MUSIC_KEY,
-                    C3Preference.PLAY_MUSIC_DEFAULT);
-        if (play == true) {
-
-        }
-        if (play == false) {
-
-
+        if(!mIsBound){
+            doBindService();
         }
     }
 
