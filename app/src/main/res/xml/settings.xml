@@ -20,6 +20,7 @@
             android:key="music"
             android:id="@+id/musicbox"
             android:title="Música de fondo"
-            android:summary="Marque si desea escuchar música"/>
+            android:summary="Marque si desea escuchar música"
+            android:onClick="clicked"/>
     </PreferenceCategory>
 </PreferenceScreen>

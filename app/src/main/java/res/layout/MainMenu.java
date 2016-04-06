@@ -34,11 +34,24 @@ public class MainMenu extends AppCompatActivity {
             startService(music);
 
         }
+        SharedPreferences prefs =
+                PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.OnSharedPreferenceChangeListener listener = new SharedPreferences.OnSharedPreferenceChangeListener() {
             public void onSharedPreferenceChanged(SharedPreferences prefs, String key) {
-
+                if(key.equals(C3Preference.PLAY_MUSIC_KEY)){
+                    Boolean play = false;
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    if (sharedPreferences.contains(C3Preference.PLAY_MUSIC_KEY))
+                        play = sharedPreferences.getBoolean(C3Preference.PLAY_MUSIC_KEY,
+                                C3Preference.PLAY_MUSIC_DEFAULT);
+                    if (play == true)
+                    {mServ.resumeMusic();}else{
+                        mServ.pauseMusic();
+                    }
+                }
             }
         };
+        prefs.registerOnSharedPreferenceChangeListener(listener);
 
     }
 

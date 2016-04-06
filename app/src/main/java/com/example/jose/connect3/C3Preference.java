@@ -3,6 +3,7 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
+import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 import android.app.FragmentTransaction;
 import android.content.Context;

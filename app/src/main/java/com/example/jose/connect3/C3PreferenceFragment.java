@@ -12,7 +12,7 @@ public class C3PreferenceFragment extends PreferenceFragment{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.settings);
-        Preference cb = findPreference("music");
+
 
     }
 
