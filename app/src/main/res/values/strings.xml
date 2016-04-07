@@ -1,4 +1,5 @@
 <resources>
+    <string name="aboutMessage">Connect3 \nClásico juego que consiste en que dos jugadores colocan fichas en un tablero 3x3 por orden, siendo el objetivo alinear 3 fichas en vertical, horizontal y diagonal.\nDesarrollado por Jose Antonio Garcia del Saz</string>
     <string name="app_name">Connect3</string>
     <string name="welcomeString">¡Bienvenido a Conecta3 para Android!</string>
     <string name="playString">Le toca, seleccione la casilla</string>
