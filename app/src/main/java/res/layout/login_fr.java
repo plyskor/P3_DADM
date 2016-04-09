@@ -1,6 +1,7 @@
 package res.layout;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.jose.connect3.R;
 
@@ -56,7 +58,19 @@ public class login_fr extends Fragment {
         View view = inflater.inflate(R.layout.fragment_login, null);
         return view;
     }
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.sign_in_button:
+                //check();
+                break;
+            case R.id.register:
+                Toast.makeText(getActivity(),"Text!",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent( "android.intent.action.C3.ACCOUNT"));
 
+                getFragmentManager().beginTransaction().replace(android.R.id.content,new account_fr()).commit();
+                break;
+        }
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {

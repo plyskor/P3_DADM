@@ -13,6 +13,9 @@ import android.widget.CheckBox;
 import android.content.SharedPreferences;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
+
+import res.layout.Login;
+
 public class C3Preference extends Activity {
     public final static String PLAY_MUSIC_KEY = "music";
     public final static boolean PLAY_MUSIC_DEFAULT = true;
@@ -45,4 +48,15 @@ public class C3Preference extends Activity {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(C3Preference.FIGURE_CODE_KEY, figurecode);
         editor.commit();
-    } }
+    }
+
+    public static void setPlayerName(Login login, String username) {
+        SharedPreferences sharedPreferences = PreferenceManager .getDefaultSharedPreferences(login);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(C3Preference.FIGURE_NAME_KEY, username);
+        editor.commit();
+    }
+
+    public static void setPlayerPassword(Login login, String password) {
+    }
+}
