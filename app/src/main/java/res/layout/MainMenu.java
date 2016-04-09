@@ -15,6 +15,7 @@ import android.preference.PreferenceManager;
 import com.example.jose.connect3.C3Preference;
 import com.example.jose.connect3.R;
 import com.example.jose.connect3.MusicService;
+import android.app.Fragment;
 import android.media.MediaPlayer;
 
 import java.io.IOException;
