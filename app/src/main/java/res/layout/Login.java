@@ -19,7 +19,7 @@ import android.widget.EditText;
 import com.example.jose.connect3.R;
 
 
-public class Login extends FragmentActivity implements OnClickListener,login_fr.OnFragmentInteractionListener {
+public class Login extends AppCompatActivity implements OnClickListener,login_fr.OnFragmentInteractionListener {
 
 
     private static final int REQUEST_READ_CONTACTS = 0;
@@ -34,18 +34,18 @@ public class Login extends FragmentActivity implements OnClickListener,login_fr.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_void);
+        setContentView(R.layout.fragment_login);
         getFragmentManager().beginTransaction()
                 .add(android.R.id.content, login_fr.newInstance()).commit();
         // Set up the login form.
-        /*usernameEditText = (EditText) findViewById(R.id.username);
+        usernameEditText = (EditText) findViewById(R.id.username);
         passwordEditText = (EditText) findViewById(R.id.password);
         Button loginButton = (Button) findViewById(R.id.sign_in_button);
         loginButton.setOnClickListener(this);
         Button newUserButton = (Button) findViewById(R.id.register);
         newUserButton.setOnClickListener(this);
 
-*/
+
     }
 
     private void check() {

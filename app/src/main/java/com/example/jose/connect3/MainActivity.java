@@ -1,4 +1,5 @@
 package com.example.jose.connect3;
+import android.net.Uri;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -17,8 +18,9 @@ import res.layout.About;
 import java.util.ArrayList;
 
 import es.uam.eps.multij.*;
+import res.layout.login_fr;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements res.layout.main_fragment.OnFragmentInteractionListener {
 
     protected JugadorAleatorio jugadorAleatorio = new JugadorAleatorio("Maquina");
     protected JugadorHumano jugadorHumano = new JugadorHumano("Humano");
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        getFragmentManager().beginTransaction()
+                .add(android.R.id.content, res.layout.main_fragment.newInstance()).commit();
     }
     public void newGame(View view){
         if(already==false) {
@@ -236,6 +239,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, C3Preference.class));
                 return true; }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
 

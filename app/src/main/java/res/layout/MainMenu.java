@@ -110,6 +110,10 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent("android.intent.action.C3.TOPTEN");
         startActivity(intent);
     }
+    public void startGame(View view) {
+        Intent intent = new Intent("android.intent.action.C3.MAINACTIVITY");
+        startActivity(intent);
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         super.onCreateOptionsMenu(menu);
