@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.RequiresPermission;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +24,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.jose.connect3.R;
+
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class Login extends AppCompatActivity implements login_fr.OnFragmentInteractionListener,account_fr.OnFragmentInteractionListener {
@@ -51,12 +58,34 @@ public class Login extends AppCompatActivity implements login_fr.OnFragmentInter
 
 
     }
+    public static String md5Java(String message){
+        String digest = null;
+        MessageDigest md = null;
+        try {
+            md = MessageDigest.getInstance("MD5");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        byte[] hash = new byte[0];
+        try {
+            hash = md.digest(message.getBytes("UTF-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        StringBuilder sb = new StringBuilder(2*hash.length);
+        for(byte b : hash){
+            sb.append(String.format("%02x", b&0xff));
+        }
+        digest = sb.toString();
+      return digest;
+    }
+
 
     private void check() {
         String username = usernameEditText.getText().toString(); String password = passwordEditText.getText().toString();
         db=new DatabaseAdapter(this);
         db.open();
-        boolean in = db.isRegistered(username, password); db.close();
+        boolean in = db.isRegistered(username, md5Java(password)); db.close();
         if (in){
             C3Preference.setPlayerName(Login.this, username);
             C3Preference.setPlayerPassword(Login.this, password);

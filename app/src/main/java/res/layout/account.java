@@ -36,7 +36,7 @@ public class Account extends Activity implements account_fr.OnFragmentInteractio
         if (!pass.equals("") && !name.equals("") && pass.equals(confPass)) {
             db = new DatabaseAdapter(this);
             db.open();
-            db.insertUser(name, pass);
+            db.insertUser(name, Login.md5Java(pass));
             db.close();
             Toast.makeText(Account.this, R.string.accountFirstToastMessage,
                     Toast.LENGTH_SHORT).show();
