@@ -36,7 +36,7 @@ public class rating extends ListActivity implements rating_fr.OnFragmentInteract
         setListAdapter(adapter);
         ListView listView = getListView();
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() { @Override
-        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3){ // TODO Auto-generated method stub
+        public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3){
             Toast.makeText(rating.this, ((TextView) arg1).getText(),
                     Toast.LENGTH_SHORT).show();
         } });

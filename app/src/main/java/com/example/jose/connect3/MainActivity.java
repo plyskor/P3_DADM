@@ -194,7 +194,7 @@ stopChronometer();
             savedInstanceState.putString("estadoPartida", estado);
             Log.i("tresenraya", "guardado estado " + estado);
             savedInstanceState.putLong("ChronoTime", chr.getBase());
-            
+
         }
     }
     @Override public void onRestoreInstanceState(Bundle savedInstanceState){
