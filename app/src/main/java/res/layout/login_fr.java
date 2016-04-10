@@ -53,11 +53,7 @@ public class login_fr extends Fragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        View view = inflater.inflate(R.layout.fragment_login, null);
-        return view;
-    }
+
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:

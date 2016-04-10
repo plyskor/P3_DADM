@@ -1,5 +1,6 @@
 package com.example.jose.connect3;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,7 +35,9 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
     private Partida partida;
     private boolean already=false;
     private RelativeLayout mainFrame;
-
+public Chronometer chr;
+    private int elapsedTime;
+    public static DatabaseAdapter db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
         setContentView(R.layout.activity_main);
         getFragmentManager().beginTransaction()
                 .add(android.R.id.content, res.layout.main_fragment.newInstance()).commit();
+        chr = (Chronometer)findViewById(R.id.chrono);
     }
     public void newGame(View view){
         if(already==false) {
@@ -51,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
             jugadores.add(jugadorHumano);
             partida = new Partida(new Tablero3Raya(), jugadores, this);
             partida.addObservador(new JugadorHumano("Observador"));
-
+            chr.start();
             Tablero3Raya tablero = (Tablero3Raya) partida.getTablero();
             for (int i = 0; i < 9; i++) {
                 buttonAux = (Button) findViewById(ids[i]);
@@ -62,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
             title = (TextView) findViewById(R.id.textView_title);
         }else{
             partida.getTablero().reset();
+            chr.setBase(SystemClock.elapsedRealtime());
+            chr.start();
             mainFrame.setBackgroundResource(R.color.colorNormal);
             for (int i = 0; i < 9; i++) {
                 buttonAux = (Button) findViewById(ids[i]);
@@ -86,14 +93,17 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
                 case 0:
                     mainFrame.setBackgroundResource(R.color.colorX);
                     setViewTitleText(R.string.xString);
+                   stopChronometer();
                     break;
                 case 1:
                     mainFrame.setBackgroundResource(R.color.colorWin);
                     setViewTitleText(R.string.winString);
+stopChronometer();
                     break;
                 case 2:
                     mainFrame.setBackgroundResource(R.color.colorLose);
                     setViewTitleText(R.string.loseString);
+                    stopChronometer();
                     break;
             }
         }
@@ -126,14 +136,17 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
                     case 0:
                         mainFrame.setBackgroundResource(R.color.colorX);
                         setViewTitleText(R.string.xString);
+                        stopChronometer();
                         break;
                     case 1:
                         mainFrame.setBackgroundResource(R.color.colorWin);
                         setViewTitleText(R.string.winString);
+                        stopChronometer();
                         break;
                     case 2:
                         mainFrame.setBackgroundResource(R.color.colorLose);
                         setViewTitleText(R.string.loseString);
+                        stopChronometer();
                         break;
                 }
             }
@@ -164,10 +177,12 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
                 case 1:
                     mainFrame.setBackgroundResource(R.color.colorWin);
                     setViewTitleText(R.string.winString);
+                    stopChronometer();
                     break;
                 case 2:
                     mainFrame.setBackgroundResource(R.color.colorLose);
                     setViewTitleText(R.string.loseString);
+                    stopChronometer();
                     break;
             }
         }
@@ -178,6 +193,8 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
             String estado = partida.getTablero().tableroToString();
             savedInstanceState.putString("estadoPartida", estado);
             Log.i("tresenraya", "guardado estado " + estado);
+            savedInstanceState.putLong("ChronoTime", chr.getBase());
+            
         }
     }
     @Override public void onRestoreInstanceState(Bundle savedInstanceState){
@@ -217,7 +234,10 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
             }
 
             title = (TextView) findViewById(R.id.textView_title);
-
+            if((savedInstanceState !=null) && savedInstanceState.containsKey("ChronoTime")) {
+                chr.setBase(savedInstanceState.getLong("ChronoTime"));
+                chr.start();
+            }
         }
     }
     @Override
@@ -240,7 +260,22 @@ public class MainActivity extends AppCompatActivity implements res.layout.main_f
                 return true; }
         return super.onOptionsItemSelected(item);
     }
+    private void stopChronometer (){
+        chr.stop();
+        String chronometerText = chr.getText().toString(); String array[] = chronometerText.split(":");
+        if (array.length == 2){
+            elapsedTime = Integer.parseInt(array[0]) * 60 +
+                    Integer.parseInt(array[1]); } else if (array.length == 3){
+            elapsedTime = Integer.parseInt(array[0]) * 60 * 60 + Integer.parseInt(array[1]) * 60 + Integer.parseInt(array[2]);
 
+        }
+    insertRound(C3Preference.getPlayerName(this),partida.getTablero().movimientosValidos().size());
+    }
+    private void insertRound(String username, int numberOfTilesLeft){
+        db = new DatabaseAdapter(this);
+        db.open();
+        db.insertData(username, elapsedTime, numberOfTilesLeft); db.close();
+    }
     @Override
     public void onFragmentInteraction(Uri uri) {
 

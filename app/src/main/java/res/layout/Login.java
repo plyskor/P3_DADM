@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.RequiresPermission;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -82,10 +83,16 @@ public class Login extends AppCompatActivity implements login_fr.OnFragmentInter
 
 
     private void check() {
-        String username = usernameEditText.getText().toString(); String password = passwordEditText.getText().toString();
+        usernameEditText = (EditText) findViewById(R.id.username);
+        passwordEditText = (EditText) findViewById(R.id.password);
+        String username = usernameEditText.getText().toString();
+        String password = passwordEditText.getText().toString();
         db=new DatabaseAdapter(this);
         db.open();
-        boolean in = db.isRegistered(username, md5Java(password)); db.close();
+
+
+        boolean in = db.isRegistered(username, md5Java(password));
+        db.close();
         if (in){
             C3Preference.setPlayerName(Login.this, username);
             C3Preference.setPlayerPassword(Login.this, password);

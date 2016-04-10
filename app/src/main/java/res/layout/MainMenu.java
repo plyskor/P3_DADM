@@ -1,6 +1,7 @@
 package res.layout;
 
 import android.content.Intent;
+import android.preference.EditTextPreference;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.*;
@@ -17,8 +18,10 @@ import com.example.jose.connect3.R;
 import com.example.jose.connect3.MusicService;
 import android.app.Fragment;
 import android.media.MediaPlayer;
+import android.widget.Toast;
 
 import java.io.IOException;
+import java.util.prefs.Preferences;
 
 public class MainMenu extends AppCompatActivity {
     public static boolean mIsBound = false;
@@ -55,6 +58,10 @@ public class MainMenu extends AppCompatActivity {
                     }else{
                         mServ.pauseMusic();
                     }
+                }
+                if(key.equals(C3Preference.PLAYER_NAME_KEY)){
+
+
                 }
             }
         };
@@ -97,8 +104,10 @@ public class MainMenu extends AppCompatActivity {
     }
 
     public void startLogin(View view) {
-        Intent intent = new Intent("android.intent.action.C3.LOGIN");
-        startActivity(intent);
+
+            Intent intent = new Intent("android.intent.action.C3.LOGIN");
+            startActivity(intent);
+
     }
 
     public void startRatings(View view) {
@@ -111,8 +120,14 @@ public class MainMenu extends AppCompatActivity {
         startActivity(intent);
     }
     public void startGame(View view) {
-        Intent intent = new Intent("android.intent.action.C3.MAINACTIVITY");
-        startActivity(intent);
+        String aux=C3Preference.getPlayerName(this);
+        if(aux.equals("unknownuser")){
+            Toast.makeText(this, "Inicia Sesión para jugar",
+                    Toast.LENGTH_LONG).show();
+        }else {
+            Intent intent = new Intent("android.intent.action.C3.MAINACTIVITY");
+            startActivity(intent);
+        }
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,6 +1,8 @@
 package res.layout;
 import android.content.Intent;
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.example.jose.connect3.C3Preference;
 import com.example.jose.connect3.R;
 import android.webkit.WebView;
 
@@ -103,6 +106,7 @@ public class welcome_animation_activity extends AppCompatActivity {
         });
 
 
+        C3Preference.setPlayerName(this,"unknownuser");
     }
 
     @Override
